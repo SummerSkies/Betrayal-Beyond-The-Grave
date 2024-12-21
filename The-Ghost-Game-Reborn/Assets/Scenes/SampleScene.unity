@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75140939}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.40762758, y: 0.000000042140346, z: 7.582859e-10, w: 0.91314834}
+  m_LocalRotation: {x: -0.40762758, y: 0.000000042140115, z: 7.582823e-10, w: 0.91314834}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1721,6 +1721,7 @@ GameObject:
   - component: {fileID: 1108869026}
   - component: {fileID: 1108869025}
   - component: {fileID: 1108869024}
+  - component: {fileID: 1108869028}
   m_Layer: 5
   m_Name: Announcement Text (Legacy)
   m_TagString: Untagged
@@ -1765,7 +1766,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1108869025}
         m_TargetAssemblyTypeName: AnnouncementTextBehaviour, Assembly-CSharp
-        m_MethodName: announce
+        m_MethodName: announceImportant
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1831,6 +1832,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108869022}
   m_CullTransparentMesh: 1
+--- !u!114 &1108869028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108869022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ab14533d3b6fe4ca54cfdf6655ece0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e9c649285b7e1a54596080da4e62a642, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1108869025}
+        m_TargetAssemblyTypeName: AnnouncementTextBehaviour, Assembly-CSharp
+        m_MethodName: announce
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: An item has been collected!
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1112976269
 GameObject:
   m_ObjectHideFlags: 0
