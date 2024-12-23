@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndGame : MonoBehaviour
+public class GameWon : MonoBehaviour
 {
     private Text text;
 
@@ -14,7 +13,7 @@ public class EndGame : MonoBehaviour
         text = gameObject.GetComponent<Text>();
     }
 
-    public void showGameEndScreen(bool exorcistWin)
+    public void EndGame(bool exorcistWin)
     {
         if (exorcistWin)
         {

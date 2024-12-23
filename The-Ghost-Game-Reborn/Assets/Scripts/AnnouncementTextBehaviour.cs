@@ -8,6 +8,7 @@ public class AnnouncementTextBehaviour : MonoBehaviour
     private Text text;
     private IEnumerator runningCoroutine = null;
     private Queue<IEnumerator> coroutineQueue = new Queue<IEnumerator>();
+    private bool allItemsCollected = false;
 
     [SerializeField] private float fadeTime;
     [SerializeField] private float standTime;
@@ -21,6 +22,10 @@ public class AnnouncementTextBehaviour : MonoBehaviour
 
     public void announce(string message)
     {
+        //If this is the last item to collect, don't announce
+        if (allItemsCollected)
+            return;
+
         //If there is no coroutine running, run the message coroutine; else add it to the queue
         if (runningCoroutine == null)
         {
@@ -28,11 +33,14 @@ public class AnnouncementTextBehaviour : MonoBehaviour
             StartCoroutine(runningCoroutine);
         }
         else
+        {
             coroutineQueue.Enqueue(TransitionText(message));
+        }
     }
 
     public void announceImportant(string message)
     {
+        allItemsCollected = true;
         //Clear queue and announce this message immediately
         clearMessageQueue();
         runningCoroutine = TransitionText(message);
@@ -66,5 +74,11 @@ public class AnnouncementTextBehaviour : MonoBehaviour
         {
             StopCoroutine(runningCoroutine);
         }
+    }
+
+    public void clearScreen()
+    {
+        clearMessageQueue();
+        text.text = string.Empty;
     }
 }
