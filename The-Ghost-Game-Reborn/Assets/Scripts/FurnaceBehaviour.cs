@@ -1,19 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FurnaceBehaviour : MonoBehaviour
 {
+    private Collider sphereCollider;
+    
     [Header("Player Tags")]
     [SerializeField] private string exorcistTag = "Exorcist";
-    [SerializeField] private string posessedTag = "Posessed";
 
     [Header("Furnace")]
     [SerializeField] GameEvent allItemsCollectedEvent;
+    [SerializeField] GameEvent itemsBurnedEvent;
     [SerializeField] private int totalNumberOfItems;
     [SerializeField] private int itemsCollected = 0;
-    [SerializeField] private bool isActive = false;
+
+    private void Start()
+    {
+        sphereCollider = GetComponent<SphereCollider>();
+    }
 
     public void checkCollectedItems()
     { 
@@ -22,15 +25,15 @@ public class FurnaceBehaviour : MonoBehaviour
         {
             //Furnace becomes interactable
             allItemsCollectedEvent.Raise();
-            isActive = true;
+            sphereCollider.enabled = true;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag(exorcistTag))
+        if (other.gameObject.CompareTag(exorcistTag))
         {
-            //burn items
+            itemsBurnedEvent.Raise();
         }
     }
 }
