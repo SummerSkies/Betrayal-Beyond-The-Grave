@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private string possessedTag = "Possessed";
     [SerializeField] private float movementDelayMultiplier;
 
     private Vector3 targetPositionOffset;
@@ -12,9 +14,16 @@ public class FollowPlayer : MonoBehaviour
     {
         //The camera moves around the player the same way I want the ghost to, so I'll use the camera's position to update the ghost's
         //Find the position of the ghost and the camera and calculate the difference so the target position is always right behind the camera
-        Vector3 cameraPosition = Camera.main.transform.position;
-        Vector3 currentPosition = transform.position;
-        targetPositionOffset = cameraPosition - currentPosition;
+        if (player.CompareTag(possessedTag))
+        {
+            Vector3 cameraPosition = Camera.main.transform.position;
+            Vector3 currentPosition = transform.position;
+            targetPositionOffset = cameraPosition - currentPosition;
+        }
+        else
+        {
+            GameObject.Destroy(gameObject);
+        }
     }
 
     void Update()
